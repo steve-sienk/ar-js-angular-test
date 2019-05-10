@@ -1,9 +1,11 @@
 # ArJsExample
 
 
+Create custom Marker image: https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html
+
 ## Development server
 
-Run with `npm start` 
+Run with `npm start`
 - This will use the modified ng start command to enable https and testring with your phone over a local wifi network.
 
 
@@ -20,4 +22,3 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-

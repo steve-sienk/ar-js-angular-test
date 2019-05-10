@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --host 0.0.0.0 --ssl true",
+    "start-for-network": "export MY_LOCAL_IP=`ipconfig getifaddr en0` && ng serve --host $MY_LOCAL_IP --ssl true",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

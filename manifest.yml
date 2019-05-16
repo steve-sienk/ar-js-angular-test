@@ -1,0 +1,5 @@
+---
+applications:
+- name: ng-ar-test
+  path: dist/ar-js-example/
+

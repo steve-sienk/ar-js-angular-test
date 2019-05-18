@@ -6,15 +6,6 @@
 <head>
   <meta charset="utf-8">
   <title>ArJsExample</title>
-  <style type="text/css">
-        .content-desktop {display: block;}
-        .content-mobile {display: none;}
-
-        @media screen and (max-width: 768px) {
-          .content-desktop {display: none;}
-          .content-mobile {display: block;}
-        }
-    </style>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,29 +16,54 @@
       <div id="qrcode"></div>
       <div id="hiro-img">
         <script type="text/javascript">
-          new QRCode(document.getElementById("qrcode"), "https://192.168.1.11:4200?x=12&y=-33&z=0");
+          new QRCode(document.getElementById("qrcode"), "https://" + window.location.host + "?x=12&y=-33&z=0");
         </script>
         <img src="assets/marker.png"/>
       </div>
     </div>
-      <a-scene>
-        <a-assets>
-          <a-asset-item id="tree" src="assets/arrow.gltf"></a-asset-item>
-          <a-asset-item id="tree-obj" src="assets/arrow.obj"></a-asset-item>
-          <a-asset-item id="tree-mtl" src="assets/materials.mtl"></a-asset-item>
-        </a-assets>
+    <div class="content-mobile">
+    <a-scene>
+      <a-assets>
+        <a-asset-item id="tree" src="assets/arrow.gltf"></a-asset-item>
+        <a-asset-item id="tree-obj" src="assets/arrow.obj"></a-asset-item>
+        <a-asset-item id="tree-mtl" src="assets/materials.mtl"></a-asset-item>
+      </a-assets>
 
-        <a-entity id="rig" position="3 1 3">
-                <a-camera id="camera"></a-camera>
-              </a-entity>
+      <a-entity id="rig" position="0 0 0">
+        <a-camera id="camera"></a-camera>
+      </a-entity>
 
-        <a-marker type="pattern" url="assets/pattern-marker.patt">
-            <a-entity id="sphere"
-              material="color: #EFEFEF; shader: flat"
-              obj-model="obj: #tree-obj; mtl: #tree-mtl"
-              animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 0 -0.10 -5; loop: true"></a-entity>
-        </a-marker>
-        
-      </a-scene>
-    </body>
+      <a-marker id="patternMarker" type="pattern" url="assets/pattern-marker.patt">
+          <a-entity id="sphere"
+            position="0 -3 -2"
+            rotation="90 0 0"
+            scale="3 1 3"
+            material="color: #EFEFEF; shader: flat"
+            obj-model="obj: #tree-obj; mtl: #tree-mtl"
+            ></a-entity>
+
+          <a-box visible="true" position="2 -3 -2" rotation="0 0 0" color="tomato" depth="3" height="3" width="0.5"></a-box>
+          <a-box visible="true" position="0 -5 -2" rotation="0 90 90" color="cornflowerblue" depth="3" height="3" width="0.5"></a-box>
+
+      </a-marker>
+
+
+    </a-scene>
+    <script>
+      console.log("hello world!")
+      var patternMarkerRef = document.querySelector("#patternMarker");
+      patternMarkerRef.addEventListener("markerFound", (e)=>{
+        // your code here
+        console.log("found the thing!")
+        console.log(e);
+        //otherthingRef.object3D.visible = false;
+      });
+      patternMarkerRef.addEventListener("markerLost", (e)=>{
+        // your code here
+        console.log("lost the thing!");
+        //otherthingRef.object3D.visible = true;
+      });
+    </script>
+  </div>
+  </body>
 </html>

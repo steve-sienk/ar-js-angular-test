@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+#hiro-img {
+  width: 200px;
+  height:200px;
+}
+.content-desktop {
+  display: flex;
+  padding: 10px;
+  margin:10px;
+}
+.content-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .content-desktop {display: none;}
+  .content-mobile {display: flex;}
+}
